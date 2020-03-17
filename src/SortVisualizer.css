@@ -1,0 +1,12 @@
+.arr-container {
+  position: absolute;
+  left: 100px;
+  /* top: 100px; */
+}
+
+.arr-bar {
+  width: 2px;
+  background-color: blue;
+  display: inline-block;
+  margin: 50px 1px;
+}
