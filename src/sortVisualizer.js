@@ -12,18 +12,18 @@ export default function SortVisualizer(props) {
 
   const resetArr = () => {
     const newArr = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 400; i++) {
       // 5 and 730 to fit in the screen
       // duplicated values are allowed
       newArr.push(randomIntFromInterval(5, 780));
     }
     setArr(newArr);
-    changeColor(arr.length, "blue");
+    changeAllColor(arr.length, "blue");
   };
 
   const sleep = m => new Promise(r => setTimeout(r, m));
 
-  const changeColor = (i, color) => {
+  const changeAllColor = (i, color) => {
     const arrBars = document.getElementsByClassName("arr-bar");
     for (let j = 0; j < i; j++) {
       const bar1 = arrBars[j].style;
@@ -43,7 +43,7 @@ export default function SortVisualizer(props) {
     bar2.backgroundColor = "blue";
   }
 
-  function last(i) {
+  function sortedAnimation(i) {
     //   sorted intem in black
     const arrBars = document.getElementsByClassName("arr-bar");
     const bar1 = arrBars[i].style;
@@ -79,9 +79,9 @@ export default function SortVisualizer(props) {
           noSwaps = false;
         }
       }
-      last(i - 1);
+      sortedAnimation(i - 1);
       if (noSwaps) {
-        changeColor(i - 1, "black");
+        changeAllColor(i - 1, "black");
         break;
       }
     }
@@ -90,18 +90,21 @@ export default function SortVisualizer(props) {
 
   // seach for the min in each iteration
   // swap min to right position
-  function selectionSort(arr) {
+  async function selectionSort(arr) {
     let min;
     for (let i = 0; i < arr.length; i++) {
       min = i;
       for (let j = i; j < arr.length; j++) {
+        await selectionAnimation(min, j);
         if (arr[min] > arr[j]) {
           min = j;
         }
       }
       if (i !== min) {
         [arr[i], arr[min]] = [arr[min], arr[i]];
+        swapAnimation(i, min);
       }
+      sortedAnimation(i);
     }
     return arr;
   }
@@ -112,7 +115,7 @@ export default function SortVisualizer(props) {
       <div className="btns">
         <button onClick={() => resetArr()}>New Bars</button>
         <button onClick={() => bubbleSort(arr)}>BubbleSort Sort</button>
-        <button onClick={() => selectionSort(arr)}>BubbleSort Sort</button>
+        <button onClick={() => selectionSort(arr)}>selectionSort Sort</button>
         {/* choose wich method will be tested */}
         <button onClick={() => testSortingAlgorithms(selectionSort)}>
           test
