@@ -31,7 +31,7 @@ export default function SortVisualizer(props) {
     }
   };
 
-  async function selectionAnimation(i, j) {
+  async function selectionAnimation(i, j, color) {
     //   animate bar[i] and bar[j]
     const arrBars = document.getElementsByClassName("arr-bar");
     const bar1 = arrBars[i].style;
@@ -39,8 +39,8 @@ export default function SortVisualizer(props) {
     bar1.backgroundColor = "red";
     bar2.backgroundColor = "red";
     await sleep(1);
-    bar1.backgroundColor = "blue";
-    bar2.backgroundColor = "blue";
+    bar1.backgroundColor = color;
+    bar2.backgroundColor = color;
   }
 
   function sortedAnimation(i) {
@@ -71,7 +71,7 @@ export default function SortVisualizer(props) {
       noSwaps = true;
       for (let j = 0; j < i - 1; j++) {
         //   animate bars selected
-        await selectionAnimation(j, j + 1);
+        await selectionAnimation(j, j + 1, "blue");
         if (array[j] > array[j + 1]) {
           //   animate swap
           swapAnimation(j, j + 1);
@@ -95,7 +95,7 @@ export default function SortVisualizer(props) {
     for (let i = 0; i < arr.length; i++) {
       min = i;
       for (let j = i; j < arr.length; j++) {
-        await selectionAnimation(min, j);
+        await selectionAnimation(min, j, "blue");
         if (arr[min] > arr[j]) {
           min = j;
         }
@@ -110,13 +110,16 @@ export default function SortVisualizer(props) {
   }
 
   // keep the left size sorted and insert intems from the right part in the right posistion
-  function insertionSort(arr) {
+  async function insertionSort(arr) {
     for (let i = 1; i < arr.length; i++) {
       let current = arr[i];
       for (var j = i - 1; j > -1 && current < arr[j]; j--) {
+        await selectionAnimation(i, j, "black");
         arr[j + 1] = arr[j];
+        swapAnimation(j, j + 1);
       }
       arr[j + 1] = current;
+      sortedAnimation(j + 1);
     }
     return arr;
   }
