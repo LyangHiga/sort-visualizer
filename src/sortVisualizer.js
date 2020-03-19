@@ -21,8 +21,6 @@ export default function SortVisualizer(props) {
     changeColor(arr.length, "blue");
   };
 
-  //   TODO Stop changing style this way, change class and re-render by useEffect
-
   const sleep = m => new Promise(r => setTimeout(r, m));
 
   const changeColor = (i, color) => {
@@ -62,7 +60,7 @@ export default function SortVisualizer(props) {
     bar2.height = `${height1}`;
   };
 
-  //   Separe Sort Algorithms in new Components
+  //  TODO Separe Sort Algorithms in new Components
 
   // check consective elements (arr[j],arr[j+1]) , if the arr[j] > arr[j+1] swap!
   // in each iterations we sort from the end
@@ -90,14 +88,35 @@ export default function SortVisualizer(props) {
     // return array;
   }
 
+  // seach for the min in each iteration
+  // swap min to right position
+  function selectionSort(arr) {
+    let min;
+    for (let i = 0; i < arr.length; i++) {
+      min = i;
+      for (let j = i; j < arr.length; j++) {
+        if (arr[min] > arr[j]) {
+          min = j;
+        }
+      }
+      if (i !== min) {
+        [arr[i], arr[min]] = [arr[min], arr[i]];
+      }
+    }
+    return arr;
+  }
+
   return (
     <div>
       <h1>Sorting Visualizer</h1>
       <div className="btns">
         <button onClick={() => resetArr()}>New Bars</button>
         <button onClick={() => bubbleSort(arr)}>BubbleSort Sort</button>
+        <button onClick={() => selectionSort(arr)}>BubbleSort Sort</button>
         {/* choose wich method will be tested */}
-        <button onClick={() => testSortingAlgorithms(bubbleSort)}>test</button>
+        <button onClick={() => testSortingAlgorithms(selectionSort)}>
+          test
+        </button>
       </div>
       <div className="arr-container">
         {arr.map((val, i) => (
