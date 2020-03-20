@@ -9,13 +9,14 @@ export const changeAllColor = (i, color) => {
 };
 
 export async function selectionAnimation(i, j, color) {
+  //   console.log(`selected: i = ${i} j= ${j}`);
   //   animate bar[i] and bar[j]
   const arrBars = document.getElementsByClassName('arr-bar');
   const bar1 = arrBars[i].style;
   const bar2 = arrBars[j].style;
   bar1.backgroundColor = 'red';
   bar2.backgroundColor = 'red';
-  await sleep(1);
+  await sleep(10);
   bar1.backgroundColor = color;
   bar2.backgroundColor = color;
 }
@@ -34,5 +35,13 @@ export const swapAnimation = (i, j) => {
   const bar2 = arrBars[j].style;
   let height2 = bar2.height;
   bar1.height = `${height2}`;
+  bar2.height = `${height1}`;
+};
+
+export const overrideAnimation = (i, j) => {
+  const arrBars = document.getElementsByClassName('arr-bar');
+  const bar1 = arrBars[i].style;
+  let height1 = bar1.height;
+  const bar2 = arrBars[j].style;
   bar2.height = `${height1}`;
 };
