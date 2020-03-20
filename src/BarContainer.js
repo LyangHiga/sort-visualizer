@@ -1,10 +1,11 @@
 import React from 'react';
+import Bar from './Bar';
 
 export default function BarContainer(props) {
   return (
     <div className="arr-container">
       {props.arr.map((val, i) => (
-        <div className="arr-bar" key={i} style={{ height: `${val}px` }}></div>
+        <Bar val={val} i={i} />
       ))}
     </div>
   );

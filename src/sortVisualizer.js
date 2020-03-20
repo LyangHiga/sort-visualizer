@@ -24,8 +24,6 @@ export default function SortVisualizer(props) {
     changeAllColor(arr.length, 'blue');
   };
 
-  //  TODO Separe Sort Algorithms in new Components
-
   return (
     <div>
       <Nav arr={arr} resetArr={resetArr} />
