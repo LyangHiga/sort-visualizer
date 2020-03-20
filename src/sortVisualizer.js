@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { randomIntFromInterval, testSortingAlgorithms } from './arrHelper';
+import { randomIntFromInterval } from './arrHelper';
 import './SortVisualizer.css';
 import { changeAllColor } from './animations';
 import Nav from './Nav';
+import BarContainer from './BarContainer';
 
 export default function SortVisualizer(props) {
   const [arr, setArr] = useState([]);
@@ -27,12 +28,8 @@ export default function SortVisualizer(props) {
 
   return (
     <div>
-      <Nav arr={arr} resetArr={resetArr}></Nav>
-      <div className="arr-container">
-        {arr.map((val, i) => (
-          <div className="arr-bar" key={i} style={{ height: `${val}px` }}></div>
-        ))}
-      </div>
+      <Nav arr={arr} resetArr={resetArr} />
+      <BarContainer arr={arr} />
     </div>
   );
 }
