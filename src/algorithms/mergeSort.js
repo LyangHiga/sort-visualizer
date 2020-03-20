@@ -1,60 +1,56 @@
-import { selectionAnimation, swapAnimation } from '../animations';
+// import { selectionAnimation, swapAnimation } from '../animations';
 
-const mergeIdx = (left, right, idx, idxLeft, idxRight) => {
-  let result = [],
-    leftIndex = 0,
-    rightIndex = 0,
-    k = 0;
-  // while booth arrays have elements to compare, the smallest of each one,
-  // take the smaller , push it to result and move idx
-  while (leftIndex < left.length && rightIndex < right.length) {
-    if (left[leftIndex] < right[rightIndex]) {
-      result.push(left[leftIndex]);
-      swapAnimation(idxLeft[leftIndex], idx[k]);
-      leftIndex++;
-      k++;
-    } else {
-      result.push(right[rightIndex]);
-      swapAnimation(idxRight[rightIndex], idx[k]);
-      rightIndex++;
-      k++;
+// REFERENCE
+// https://www.geeksforgeeks.org/in-place-merge-sort/
+
+// in place merge sort
+
+// Merges two subarrays of arr.
+// First subarray is arr[l..m]
+//  Second subarray is arr[m+1..r]
+function merge(arr, start, mid, end) {
+  let startRight = mid + 1;
+
+  // If the direct merge is already sorted
+  if (arr[mid] <= arr[startRight]) return;
+
+  // Two pointers to maintain start of both arrays to merge
+  while (start <= mid && startRight <= end) {
+    // If element 1 is in right place
+    if (arr[start] <= arr[startRight]) start += 1;
+    else {
+      let value = arr[startRight];
+      let index = startRight;
+
+      //  Shift all the elements between element 1
+      //  element 2, right by 1.
+      while (index !== start) {
+        arr[index] = arr[index - 1];
+        index -= 1;
+      }
+      arr[start] = value;
+
+      //  Update all the pointers
+      start += 1;
+      mid += 1;
+      startRight += 1;
     }
   }
-  // one of them still has elemenst, already sorted, so we just need concat it with the result array
-  while (leftIndex < left.length) {
-    result.push(left[leftIndex]);
-    swapAnimation(idxLeft[leftIndex], idx[k]);
-    leftIndex++;
-    k++;
+}
+
+// l is for left index and r is right index of the
+// sub-array of arr to be sorted
+export default function mergeSort(arr, l, r) {
+  let a = arr;
+  if (l < r) {
+    // Same as (l + r) / 2, but avoids overflow
+    // for large l and r
+    const m = l + (r - l) / 2;
+
+    // Sort first and second halves
+    mergeSort(arr, l, m);
+    mergeSort(arr, m + 1, r);
+
+    merge(arr, l, m, r);
   }
-  while (rightIndex < right.length) {
-    result.push(right[rightIndex]);
-    swapAnimation(idxRight[rightIndex], idx[k]);
-    rightIndex++;
-    k++;
-    //   }
-    // TODO return new idx
-    return result;
-  }
-};
-
-export default function mergeSort(arr, idx) {
-  if (arr.length < 2) return arr;
-
-  const mid = Math.floor(arr.length / 2);
-  const left = arr.slice(0, mid);
-  const idxLeft = idx.slice(0, mid);
-  const right = arr.slice(mid);
-  const idxRight = idx.slice(mid);
-
-  selectionAnimation(mid, idx[0], 'blue');
-  selectionAnimation(mid, idx[idx.length - 1], 'blue');
-
-  return mergeIdx(
-    mergeSort(left, idxLeft),
-    mergeSort(right, idxRight),
-    idx,
-    idxLeft,
-    idxRight
-  );
 }
