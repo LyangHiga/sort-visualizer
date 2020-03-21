@@ -18,7 +18,7 @@ export default function Nav(props) {
         <button onClick={() => mergeSort(props.arr, 0, props.arr.length - 1)}>
           Merge Sort
         </button>
-        <button onClick={() => quickSort(props.arr)}>Insertion Sort</button>
+        <button onClick={() => quickSort(props.arr)}>Quick Sort</button>
         {/* choose wich method will be tested */}
         <button onClick={() => testSortingAlgorithms(quickSort)}>test</button>
       </div>
