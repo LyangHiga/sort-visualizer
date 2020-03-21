@@ -33,7 +33,6 @@ function merge(arr, start, mid, end) {
       //  Shift all the elements between element 1
       //  element 2, right by 1.
       while (index !== start) {
-        // console.log(`index = ${index}, start = ${start}`);
         arr[index] = arr[index - 1];
         swapAnimation(index, index - 1);
         sortedAnimation(index);
