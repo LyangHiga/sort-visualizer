@@ -1,7 +1,8 @@
 import {
   selectionAnimation,
   swapAnimation,
-  sortedAnimation
+  sortedAnimation,
+  changeAllColor
 } from '../animations';
 
 // REFERENCE
@@ -12,7 +13,7 @@ import {
 // Merges two subarrays of arr.
 // First subarray is arr[l..m]
 //  Second subarray is arr[m+1..r]
-function merge(arr, start, mid, end) {
+async function merge(arr, start, mid, end) {
   let startRight = mid + 1;
 
   // If the direct merge is already sorted
@@ -24,6 +25,7 @@ function merge(arr, start, mid, end) {
   while (start <= mid && startRight <= end) {
     // If element 1 is in right place
     if (arr[start] <= arr[startRight]) {
+      await selectionAnimation(start, startRight);
       sortedAnimation(start);
       start += 1;
     } else {
@@ -39,12 +41,12 @@ function merge(arr, start, mid, end) {
         index -= 1;
       }
       arr[start] = value;
-
       //  Update all the pointers
       start += 1;
       mid += 1;
       startRight += 1;
     }
+    changeAllColor(startRight, 'black');
   }
 }
 
@@ -62,7 +64,7 @@ export default async function mergeSort(arr, l, r) {
     await mergeSort(arr, l, m);
     await mergeSort(arr, m + 1, r);
 
-    merge(arr, l, m, r);
+    await merge(arr, l, m, r);
   }
   return arr;
 }
