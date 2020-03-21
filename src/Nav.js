@@ -6,7 +6,7 @@ import mergeSort from './algorithms/mergeSort';
 import { testSortingAlgorithms } from './arrHelper';
 
 export default function Nav(props) {
-  console.log(props.arr);
+  //   console.log(`arr props= ${props.arr}`);
   return (
     <div>
       <h1>Sorting Visualizer</h1>
@@ -15,7 +15,9 @@ export default function Nav(props) {
         <button onClick={() => bubbleSort(props.arr)}>Bubble Sort</button>
         <button onClick={() => selectionSort(props.arr)}>Selection Sort</button>
         <button onClick={() => insertionSort(props.arr)}>Insertion Sort</button>
-        <button onClick={() => mergeSort(props.arr)}>Merge Sort</button>
+        <button onClick={() => mergeSort(props.arr, 0, props.arr.length - 1)}>
+          Merge Sort
+        </button>
         {/* choose wich method will be tested */}
         <button onClick={() => testSortingAlgorithms(mergeSort)}>test</button>
       </div>

@@ -15,7 +15,7 @@ export default function SortVisualizer(props) {
 
   const resetArr = () => {
     const newArr = [];
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 400; i++) {
       // 5 and 730 to fit in the screen
       // duplicated values are allowed
       newArr.push(randomIntFromInterval(5, 780));
