@@ -4,6 +4,7 @@ import selectionSort from './algorithms/selectionSort';
 import insertionSort from './algorithms/insertSort';
 import mergeSort from './algorithms/mergeSort';
 import quickSort from './algorithms/quickSort';
+import radixSort from './algorithms/radixSort';
 import { testSortingAlgorithms } from './arrHelper';
 
 export default function Nav(props) {
@@ -19,8 +20,9 @@ export default function Nav(props) {
           Merge Sort
         </button>
         <button onClick={() => quickSort(props.arr)}>Quick Sort</button>
+        <button onClick={() => radixSort(props.arr)}>Radix Sort</button>
         {/* choose wich method will be tested */}
-        <button onClick={() => testSortingAlgorithms(quickSort)}>test</button>
+        <button onClick={() => testSortingAlgorithms(radixSort)}>test</button>
       </div>
     </div>
   );
