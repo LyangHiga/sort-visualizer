@@ -26,7 +26,7 @@ export default function SortVisualizer(props) {
 
   return (
     <div>
-      <Nav arr={arr} resetArr={resetArr} />
+      <Nav arr={arr} resetArr={resetArr} setArr={setArr} />
       <BarContainer arr={arr} />
     </div>
   );
