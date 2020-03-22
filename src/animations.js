@@ -28,6 +28,17 @@ export const sortedAnimation = i => {
   bar1.backgroundColor = 'black';
 };
 
+export async function rearrange(arr, color) {
+  //   sorted intem in black
+  const arrBars = document.getElementsByClassName('arr-bar');
+  for (let i = 0; i < arr.length; i++) {
+    const bar = arrBars[i].style;
+    await sleep(1);
+    bar.height = `${arr[i]}px`;
+    bar.backgroundColor = color;
+  }
+}
+
 export const swapAnimation = (i, j) => {
   const arrBars = document.getElementsByClassName('arr-bar');
   const bar1 = arrBars[i].style;
