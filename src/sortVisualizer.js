@@ -5,6 +5,13 @@ import { changeAllColor } from './animations';
 import Nav from './Nav';
 import BarContainer from './BarContainer';
 
+const MARGIN = 100;
+// bar size + bar margin
+const BAR_SIZE = 4;
+
+const MIN_HEIGHT = 5;
+const NAV_HEIGHT = 200;
+
 export default function SortVisualizer(props) {
   const [arr, setArr] = useState([]);
 
@@ -15,10 +22,20 @@ export default function SortVisualizer(props) {
 
   const resetArr = () => {
     const newArr = [];
-    for (let i = 0; i < 400; i++) {
+    const width =
+      window.innerWidth ||
+      document.documentElement.clientWidth ||
+      document.body.clientWidth;
+    const height =
+      window.innerHeight ||
+      document.documentElement.clientHeight ||
+      document.body.clientHeight;
+    console.log(height);
+    const nbars = Math.floor((width - 2 * MARGIN) / BAR_SIZE);
+    for (let i = 0; i < nbars; i++) {
       // 5 and 730 to fit in the screen
       // duplicated values are allowed
-      newArr.push(randomIntFromInterval(5, 780));
+      newArr.push(randomIntFromInterval(MIN_HEIGHT, height - NAV_HEIGHT));
     }
     setArr(newArr);
     changeAllColor(arr.length, 'blue');

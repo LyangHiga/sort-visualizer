@@ -1,7 +1,7 @@
 .arr-container {
   position: absolute;
   left: 100px;
-  /* top: 100px; */
+  right: 100px;
 }
 
 .arr-bar {
