@@ -14,6 +14,7 @@ const NAV_HEIGHT = 200;
 
 export default function SortVisualizer(props) {
   const [arr, setArr] = useState([]);
+  const [disable, setDisable] = useState(false);
 
   useEffect(() => {
     resetArr();
@@ -43,7 +44,12 @@ export default function SortVisualizer(props) {
 
   return (
     <div>
-      <Nav arr={arr} resetArr={resetArr} />
+      <Nav
+        arr={arr}
+        resetArr={resetArr}
+        disable={disable}
+        setDisable={setDisable}
+      />
       <BarContainer arr={arr} />
     </div>
   );
