@@ -1,21 +1,21 @@
-import React from 'react';
-import bubbleSort from './algorithms/bubbleSort';
-import selectionSort from './algorithms/selectionSort';
-import insertionSort from './algorithms/insertSort';
-import mergeSort from './algorithms/mergeSort';
-import quickSort from './algorithms/quickSort';
-import radixSort from './algorithms/radixSort';
-import heapSort from './algorithms/heapSort';
-import { testSortingAlgorithms } from './arrHelper';
+import React from "react";
+import bubbleSort from "./algorithms/bubbleSort";
+import selectionSort from "./algorithms/selectionSort";
+import insertionSort from "./algorithms/insertSort";
+import mergeSort from "./algorithms/mergeSort";
+import quickSort from "./algorithms/quickSort";
+import radixSort from "./algorithms/radixSort";
+import heapSort from "./algorithms/heapSort";
+import { testSortingAlgorithms } from "./arrHelper";
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import styles from './styles/NavStyles';
+import Button from "@material-ui/core/Button";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import styles from "./styles/NavStyles";
 
 function Nav(props) {
-  const { classes } = props;
+  const classes = styles();
   async function handleClick(sort) {
     props.setDisable(true);
     await sort;
@@ -28,36 +28,36 @@ function Nav(props) {
           Sorting Visualizer
         </Typography>
         <div className={classes.button}>
-          <button
+          <Button
             className={classes.button}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
             onClick={() => props.resetArr()}
             disabled={props.disable}
           >
             New Bars
-          </button>
-          <button
+          </Button>
+          <Button
             className={classes.button}
             onClick={() => handleClick(bubbleSort(props.arr))}
             disabled={props.disable}
           >
             Bubble Sort
-          </button>
-          <button
+          </Button>
+          <Button
             className={classes.button}
             onClick={() => handleClick(selectionSort(props.arr))}
             disabled={props.disable}
           >
             Selection Sort
-          </button>
-          <button
+          </Button>
+          <Button
             className={classes.button}
             onClick={() => handleClick(insertionSort(props.arr))}
             disabled={props.disable}
           >
             Insertion Sort
-          </button>
-          <button
+          </Button>
+          <Button
             className={classes.button}
             onClick={() =>
               handleClick(mergeSort(props.arr, 0, props.arr.length - 1))
@@ -65,21 +65,21 @@ function Nav(props) {
             disabled={props.disable}
           >
             Merge Sort
-          </button>
-          <button
+          </Button>
+          <Button
             className={classes.button}
             onClick={() => handleClick(quickSort(props.arr))}
             disabled={props.disable}
           >
             Quick Sort
-          </button>
-          <button
+          </Button>
+          <Button
             className={classes.button}
             onClick={() => handleClick(radixSort(props.arr))}
             disabled={props.disable}
           >
             Radix Sort
-          </button>
+          </Button>
           {/* <button className={classes.button} onClick={() => heapSort(props.arr)}>
             Heap Sort
           </button> */}
@@ -95,4 +95,4 @@ function Nav(props) {
   );
 }
 
-export default withStyles(styles)(Nav);
+export default Nav;

@@ -1,32 +1,33 @@
 // TODO mobile
-import sizes from './sizes';
+import sizes from "./sizes";
+import { makeStyles } from "@material-ui/core/styles";
 
-const styles = theme => ({
+const styles = makeStyles(() => ({
   Navbar: {
-    display: 'flex',
-    alignItems: 'space-around',
-    justifyContent: 'center',
-    height: '6vh'
+    display: "flex",
+    alignItems: "space-around",
+    justifyContent: "center",
+    height: "8vh",
   },
   title: {
-    display: 'none',
-    [sizes.down('sm')]: {
-      fontSize: '12px',
-      display: 'block'
-    }
+    [sizes.down("sm")]: {
+      fontSize: "12px",
+      display: "block",
+    },
   },
   button: {
-    margin: '0 10px',
-    cursor: 'pointer',
-    border: 'none',
-    fontSize: '15px',
-    [sizes.down('sm')]: {
-      fontSize: '8px',
-      margin: '0 1px',
-      border: 'none',
-      cursor: 'pointer'
-    }
-  }
-});
+    margin: "0 10px",
+    cursor: "pointer",
+    border: "none",
+    fontSize: "15px",
+    textTransform: "none",
+    [sizes.down("sm")]: {
+      fontSize: "8px",
+      margin: "0 1px",
+      border: "none",
+      cursor: "pointer",
+    },
+  },
+}));
 
 export default styles;
