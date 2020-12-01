@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import bubbleSort from "./algorithms/bubbleSort";
 import selectionSort from "./algorithms/selectionSort";
 import insertionSort from "./algorithms/insertSort";
@@ -21,75 +21,54 @@ function Nav(props) {
     await sort;
     props.setDisable(false);
   }
+
+  const btnList = [
+    { name: "New Bars", click: () => props.resetArr() },
+    { name: "Bubble Sort", click: () => handleClick(bubbleSort(props.arr)) },
+    {
+      name: "Selection Sort",
+      click: () => handleClick(selectionSort(props.arr)),
+    },
+    {
+      name: "Insertion Sort",
+      click: () => handleClick(insertionSort(props.arr)),
+    },
+    {
+      name: "Merge Sort",
+      click: () => handleClick(mergeSort(props.arr, 0, props.arr.length - 1)),
+    },
+    {
+      name: "Quick Sort",
+      click: () => handleClick(quickSort(props.arr)),
+    },
+    {
+      name: "Radix Sort",
+      click: () => handleClick(radixSort(props.arr)),
+    },
+  ];
+
+  const buttons = (
+    <Fragment>
+      {btnList.map((btn) => (
+        <Button
+          key={`btn-${btn.name}`}
+          className={classes.button}
+          onClick={btn.click}
+          disabled={props.disable}
+        >
+          {btn.name}
+        </Button>
+      ))}
+    </Fragment>
+  );
+  // drawer
   return (
     <AppBar position="static" color="white" className={classes.Navbar}>
       <Toolbar>
         <Typography className={classes.title} variant="h6" color="inherit">
           Sorting Visualizer
         </Typography>
-        <div className={classes.button}>
-          <Button
-            className={classes.button}
-            style={{ cursor: "pointer" }}
-            onClick={() => props.resetArr()}
-            disabled={props.disable}
-          >
-            New Bars
-          </Button>
-          <Button
-            className={classes.button}
-            onClick={() => handleClick(bubbleSort(props.arr))}
-            disabled={props.disable}
-          >
-            Bubble Sort
-          </Button>
-          <Button
-            className={classes.button}
-            onClick={() => handleClick(selectionSort(props.arr))}
-            disabled={props.disable}
-          >
-            Selection Sort
-          </Button>
-          <Button
-            className={classes.button}
-            onClick={() => handleClick(insertionSort(props.arr))}
-            disabled={props.disable}
-          >
-            Insertion Sort
-          </Button>
-          <Button
-            className={classes.button}
-            onClick={() =>
-              handleClick(mergeSort(props.arr, 0, props.arr.length - 1))
-            }
-            disabled={props.disable}
-          >
-            Merge Sort
-          </Button>
-          <Button
-            className={classes.button}
-            onClick={() => handleClick(quickSort(props.arr))}
-            disabled={props.disable}
-          >
-            Quick Sort
-          </Button>
-          <Button
-            className={classes.button}
-            onClick={() => handleClick(radixSort(props.arr))}
-            disabled={props.disable}
-          >
-            Radix Sort
-          </Button>
-          {/* <button className={classes.button} onClick={() => heapSort(props.arr)}>
-            Heap Sort
-          </button> */}
-          {/* <button
-            className={classes.button}
-            onClick={() => testSortingAlgorithms()}
-          >
-            Test
-          </button> */}
-        </div>
+        <div className={classes.button}>{buttons}</div>
       </Toolbar>
     </AppBar>
   );

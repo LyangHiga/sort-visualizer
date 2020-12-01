@@ -1,5 +1,5 @@
-import React from 'react';
-import Bar from './Bar';
+import React from "react";
+import Bar from "./Bar";
 
 export default function BarContainer(props) {
   return (

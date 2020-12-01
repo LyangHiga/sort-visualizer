@@ -1,8 +1,6 @@
-// TODO mobile
-import sizes from "./sizes";
 import { makeStyles } from "@material-ui/core/styles";
 
-const styles = makeStyles(() => ({
+const styles = makeStyles((theme) => ({
   Navbar: {
     display: "flex",
     alignItems: "space-around",
@@ -10,8 +8,8 @@ const styles = makeStyles(() => ({
     height: "8vh",
   },
   title: {
-    [sizes.down("sm")]: {
-      fontSize: "12px",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "10px",
       display: "block",
     },
   },
@@ -19,9 +17,9 @@ const styles = makeStyles(() => ({
     margin: "0 10px",
     cursor: "pointer",
     border: "none",
-    fontSize: "15px",
+    fontSize: "1rem",
     textTransform: "none",
-    [sizes.down("sm")]: {
+    [theme.breakpoints.down("sm")]: {
       fontSize: "8px",
       margin: "0 1px",
       border: "none",

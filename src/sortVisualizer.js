@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { randomIntFromInterval } from './arrHelper';
-import './SortVisualizer.css';
-import { changeAllColor } from './animations';
-import Nav from './Nav';
-import BarContainer from './BarContainer';
+import React, { useState, useEffect } from "react";
+import { randomIntFromInterval } from "./arrHelper";
+import "./SortVisualizer.css";
+import { changeAllColor } from "./animations";
+import Nav from "./Nav";
+import BarContainer from "./BarContainer";
 
 const MARGIN = 100;
 // bar size + bar margin
 const BAR_SIZE = 4;
 
 const MIN_HEIGHT = 5;
+// 8 vh aproximation
 const NAV_HEIGHT = 200;
 
 export default function SortVisualizer(props) {
@@ -39,7 +40,7 @@ export default function SortVisualizer(props) {
       newArr.push(randomIntFromInterval(MIN_HEIGHT, height - NAV_HEIGHT));
     }
     setArr(newArr);
-    changeAllColor(arr.length, 'blue');
+    changeAllColor(arr.length, "blue");
   };
 
   return (
