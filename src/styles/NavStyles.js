@@ -8,9 +8,17 @@ const styles = makeStyles((theme) => ({
     height: "8vh",
   },
   title: {
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "10px",
-      display: "block",
+    [theme.breakpoints.up("md")]: {
+      marginRight: "2.5vw",
+      paddingRight: "2.5vw",
+      borderRight: "0.10em solid black",
+      padding: "0.5em",
+    },
+  },
+  drawerIconContainer: {
+    marginLeft: "auto",
+    "&:hover": {
+      backgroundColor: "transparent",
     },
   },
   button: {
@@ -19,11 +27,9 @@ const styles = makeStyles((theme) => ({
     border: "none",
     fontSize: "1rem",
     textTransform: "none",
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "8px",
-      margin: "0 1px",
-      border: "none",
-      cursor: "pointer",
+    [theme.breakpoints.down("md")]: {
+      fontSize: "0.9rem",
+      margin: "0 5px",
     },
   },
 }));
