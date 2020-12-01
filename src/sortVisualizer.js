@@ -24,14 +24,8 @@ export default function SortVisualizer(props) {
 
   const resetArr = () => {
     const newArr = [];
-    const width =
-      window.innerWidth ||
-      document.documentElement.clientWidth ||
-      document.body.clientWidth;
-    const height =
-      window.innerHeight ||
-      document.documentElement.clientHeight ||
-      document.body.clientHeight;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
     console.log(height);
     const nbars = Math.floor((width - 2 * MARGIN) / BAR_SIZE);
     for (let i = 0; i < nbars; i++) {
